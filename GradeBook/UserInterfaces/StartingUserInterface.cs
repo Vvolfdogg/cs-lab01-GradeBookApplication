@@ -33,41 +33,34 @@ namespace GradeBook.UserInterfaces
         }
 
         //public static void CreateCommand(string command)
-        public static BaseGradeBook CreateCommand(string command)
+        public static void CreateCommand(string command)
         {
             var parts = command.Split(' ');
             if (parts.Length != 4)
             {
                 Console.WriteLine("Command not valid, Create requires a name, type of gradebook, if it's weighted (true / false).");
-                throw new Exception();
-                /*var name = parts[1];
-                BaseGradeBook gradeBook;
-                Console.WriteLine("Created gradebook {0}.", name);
-                GradeBookUserInterface.CommandLoop(gradeBook);*/
-                //return new StandardGradeBook("name", true);
+                return;
+                
             }
-            else if (parts[2] == "standard"/*GradeBookType.Standard.ToString()*/)
+            else if (parts[2] == "standard")
             {
                 var name = parts[1];
                 var param = Convert.ToBoolean(parts[3]);
                 BaseGradeBook gradeBook = new StandardGradeBook(name, param);
                 Console.WriteLine("Created gradebook {0}.", name);
                 GradeBookUserInterface.CommandLoop(gradeBook);
-                return gradeBook;
             }
-            else if(parts[2] == "ranked"/*GradeBookType.Ranked.ToString()*/)
+            else if(parts[2] == "ranked")
             {
                 var name = parts[1];
                 var param = Convert.ToBoolean(parts[3]);
                 BaseGradeBook gradeBook = new RankedGradeBook(name, param);
                 Console.WriteLine("Created gradebook {0}.", name);
                 GradeBookUserInterface.CommandLoop(gradeBook);
-                return gradeBook;
             }
             else
             {
                 Console.WriteLine(parts[2] + " is not a supported type of gradebook, please try again");
-                throw new Exception();
             }
 
             //BaseGradeBook gradeBook = new BaseGradeBook(name);
